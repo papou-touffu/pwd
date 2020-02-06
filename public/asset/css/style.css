@@ -1,0 +1,28 @@
+body{
+
+    width: 1280px;
+    margin:0 AUTO!important;
+}
+#wrapper{
+    width: 1280px;
+}
+footer
+{
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 35px;
+    width: 100%;
+    background: #abb6c2;
+    margin-top: 5px;
+    padding-top: 10px;
+    color:#999;
+}
+
+.copyright
+{
+    width: 1280px;
+    text-align: right;
+    color:#df691a;
+
+}

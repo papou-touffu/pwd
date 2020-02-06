@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+        <link rel="stylesheet" href={{ asset('asset/css/style.css') }}>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body><div class="container">
+        <img src="{{ asset('asset/image/fond_header.jpg')}}" alt="" width="100%" height="500px">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  path('blog') }}">Accueil </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  path('home') }}">Critiques</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  path('lexique') }}">Lexique pour débutants</a>
+                </li>
+                {% if  is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  path('blog_create') }}">créer un article</a>
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{  path('security_admin') }}">admin</a>
+                </li>
+                {% else %}
+                {% endif %}
+                {% if not app.user %}
+                <li class="nav-item">
+                    <a href="{{ path('security_login') }}" class="nav-link">Connexion</a>
+                </li>
+                    <li class="nav-item">
+                    <a href="{{ path('security_registration') }}" class="nav-link">Inscription</a>
+                </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ path('profil', {'id': app.user.id}) }}"class="nav-link">Profil</a>
+                    </li>
+
+            <li class="nav-item">
+                    <a href="{{ path('security_logout') }}" class="nav-link">Déconnexion</a>
+                </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+        {% block body %}{% endblock %}
+    </div>
+    <footer><div class="copyright">
+            Designed By Cédric Dargent • <a href="mailto:dargentcedric1@gmail.com">E-mail</a><br>
+        </div></footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

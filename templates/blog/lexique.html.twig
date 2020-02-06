@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="lexiques">
+        {% for lexique in lexiques %}
+            <h2>{{ lexique.title }} :</h2>
+            {{ lexique.content | raw }}
+        {%  endfor %}
+    </section>
+{% endblock %}

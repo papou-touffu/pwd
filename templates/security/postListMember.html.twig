@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Liste des utilisateurs</h1>
+
+    {% for user in users %}
+        <div class="col">
+                <div class="card">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ user.username }} </li>
+
+                    </ul>
+                </div>
+            </a>
+            <a href="{{ path('removeUser',{id: user.id}) }}">Delete</a>
+
+        </div>
+    {% endfor %}
+
+{% endblock %}

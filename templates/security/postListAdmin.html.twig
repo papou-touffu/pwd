@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Liste critique</h1>
+    <h2>clique sur critique pour la modifier</h2>
+    {% for critique in critiques %}
+        <div class="col">
+            <a href="{{ path('blog_edit',{id: critique.id}) }}">
+                <div class="card">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ critique.title }} </li>
+                        <li class="list-group-item">{{ critique.content }}</li>
+                    </ul>
+                </div>
+            </a>
+            <a href="{{ path('removeCritique',{id: critique.id}) }}">Delete</a>
+             </div>
+    {% endfor %}
+
+{% endblock %}

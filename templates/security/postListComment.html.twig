@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>liste Commentaires</h1>
+    {% for comment in comments %}
+        <div class="col">
+
+                <div class="card">
+
+                    <ul class="list-group list-group-flush">
+                     <p>Auteur :</p> <li class="list-group-item">{{ comment.author }} </li>
+                    <p>Contenu :</p> <li class="list-group-item">{{ comment.content }}</li>
+                        <p>article lié :</p> <li class="list-group-item">{{ comment.critique.id }}</li>
+                        <a href="{{ path('removeComment',{id: comment.id}) }}">Delete</a>
+
+                    </ul>
+                </div>
+            </a>
+
+        </div>
+    {% endfor %}
+{% endblock %}

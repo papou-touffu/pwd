@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section class="critiques">
+        <div class="search-button">
+                <a href="{{ path('search') }}" class="btn btn-secondary btn-lg">Faire une recherche</a>
+        </div>
+    {% for critique in critiques %}
+
+    <h2>{{ critique.title }}</h2>
+
+<div class="metadata">Ecrit le {{ critique.createdAt | date('d/m/Y') }} à {{ critique.createdAt | date('H:i') }}</div>
+        <div class="content">
+                <img src="{{ asset('uploads/' ~ critique.image)}}" alt="">
+        </div>
+        {{ critique.content | raw }}
+        <br>
+        <a href="{{ path('blog_show' , {'id': critique.id}) }}">Lire la suite </a>
+        <br>
+        {% if  is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('blog_edit' , {'id': critique.id}) }}">Modifier l'article </a>
+                <br>
+              <!--  <a href="{{ path('removeCritique',{id: critique.id}) }}">Supprimer l'article</a> -->
+        {% else %}
+        {% endif %}
+    {%  endfor %}
+</section>
+{% endblock %}

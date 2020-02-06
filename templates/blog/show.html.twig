@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="list">
+    <div class="list-group">
+
+            <h2>{{ critique.title }}</h2>
+
+            <div class="metadata">Ecrit le {{ critique.createdAt | date('d/m/Y') }} à {{ critique.createdAt | date('H:i') }} dans la catégorie {{ critique.category.title }}</div>
+            <div class="content"><img src="{{ asset('uploads/' ~ critique.image)}}" alt=""> </div>
+            {{ critique.content | raw }}
+        {% if  is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('blog_edit' , {'id': critique.id}) }}">modifier la critique </a>
+    {% else %}
+    {% endif %}
+ <section id="commentaires">
+     <h1>{{ critique.comments |length }} commentaires :</h1>
+     {% for comment in critique.comments %}
+ <div class="comment">
+     <div class="row">
+         <div class="col-3">{{ comment.author }} (<small>{{ comment.createdAt |date('d/m/Y à H:i') }}</small>)
+         </div>
+         <div class="col">
+             {{ comment.content | raw }}
+         </div>
+     </div>
+ </div>
+     {% endfor  %}
+{% if app.user %}
+     {{ form_start(commentForm) }}
+     {{ form_row(commentForm.author, {'attr':{'placeholder':"Votre nom"} }) }}
+     {{ form_row(commentForm.content, {'attr':{'placeholder':"Votre commentaire"} }) }}
+     <button type="submit" class="btn btn-success">Poster le commentaire</button>
+     {{ form_end(commentForm) }}
+     {% else %}
+     <h2>Veillez vous connecter pour commenter </h2>
+         <a href="{{ path('security_login') }}" class="btn btn-primary">Se connecter</a>
+     {% endif %}
+</section>
+{% endblock %}

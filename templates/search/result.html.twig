@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="critiques">
+        {% for critique in critiques %}
+
+            <h2>{{ critique.title }}</h2>
+
+            <div class="metadata">Ecrit le {{ critique.createdAt | date('d/m/Y') }} à {{ critique.createdAt | date('H:i') }}</div>
+            <div class="content">
+                <img src="{{ asset('uploads/' ~ critique.image)}}" alt="">
+            </div>
+            {{ critique.content | raw }}
+            <br>
+            <a href="{{ path('blog_show' , {'id': critique.id}) }}">Lire la suite </a>
+            <br>
+
+
+
+        {%  endfor %}
+        <div class="search-button">
+            <a href="{{ path('search') }}" class="btn btn-secondary btn-lg">Nouvelle recherche</a>
+        </div>
+    </section>
+{% endblock %}

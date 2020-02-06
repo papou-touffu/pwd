@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <div class="col-4">
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nom d'utilisateur :</label>
+                    </br>
+                    {{ user.username }}
+                </div>
+                <div class="form-group left_list">
+                    <label for="exampleFormControlTextarea1">adresse mail :</label>
+                    </br>
+                    {{ user.email }}
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
